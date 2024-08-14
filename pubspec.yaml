@@ -1,0 +1,57 @@
+name: marketplace
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  bloc: ^8.1.4
+  equatable: ^2.0.5
+  go_router: ^14.2.1
+  flutter_bloc: ^8.1.6
+
+  # for design_system
+  cupertino_icons: ^1.0.6
+  l: ^4.0.2
+  flutter_screenutil: ^5.9.0
+  flutter_svg: ^2.0.10+1
+
+  # for slides
+  carousel_slider: ^4.2.1
+
+  #for internet connectivity
+  connectivity_plus: ^6.0.3
+
+  #for locale storage
+  flutter_secure_storage: ^9.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/fonts/
+    - assets/images/
+    - assets/
+
+
+#  fonts:
+#    - family: TT-Uzum
+#      fonts:
+#        - asset: assets/fonts/TT-Uzum-ExtraBold.ttf
+#        - asset: assets/fonts/TT-Uzum-Bold.ttf
+#        - asset: assets/fonts/TT-Uzum-DemiBold.ttf
+#        - asset: assets/fonts/TT-Uzum-Regular.ttf
+#        - asset: assets/fonts/TT-Uzum-Light.ttf
