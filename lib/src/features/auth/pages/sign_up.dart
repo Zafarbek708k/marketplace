@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:marketplace/src/features/auth/pages/sign_in.dart';
 import 'package:marketplace/src/features/auth/pages/verify_code.dart';
 import '../widgets/auth_bottom_last_text_button_widget.dart';
 import '../widgets/auth_common_button_widget.dart';
@@ -78,7 +79,9 @@ class _SignUpState extends State<SignUp> {
               BottomLastTextButton(
                 text1: "Already have an account?",
                 text2: "Sign In",
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignIn()));
+                },
               )
             ],
           ),

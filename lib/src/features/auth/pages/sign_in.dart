@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marketplace/src/features/auth/pages/forget_verify_code_page.dart';
+import 'package:marketplace/src/features/auth/pages/new_password.dart';
 import 'package:marketplace/src/features/auth/pages/sign_up.dart';
 import '../widgets/auth_bottom_last_text_button_widget.dart';
 import '../widgets/auth_common_button_widget.dart';
@@ -56,7 +58,9 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgetVerifyCodePage()));
+                    },
                     child: const Text(
                       "Forgot Password?",
                       style: TextStyle(color: Colors.brown),

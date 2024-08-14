@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marketplace/src/common/styles/app_colors.dart';
+
 
 class AuthTextFieldWidget extends StatelessWidget {
   const AuthTextFieldWidget({
@@ -40,10 +40,7 @@ class AuthTextFieldWidget extends StatelessWidget {
             decoration: InputDecoration(
               hintText: hintText,
               suffixIcon: obscureText != null
-                  ? IconButton(
-                icon: Icon(obscureText! ? Icons.visibility_off : Icons.visibility),
-                onPressed: togglePasswordVisibility,
-              )
+                  ? IconButton(icon: Icon(obscureText! ? Icons.visibility_off : Icons.visibility), onPressed: togglePasswordVisibility)
                   : null,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(35.r),
@@ -54,7 +51,7 @@ class AuthTextFieldWidget extends StatelessWidget {
             onSubmitted: onSubmitted,
             onEditingComplete: onEditingComplete,
             onTapOutside: (_) {
-              FocusScope.of(context).unfocus();  // Dismiss the keyboard when tapping outside
+              FocusScope.of(context).unfocus(); // Dismiss the keyboard when tapping outside
             },
           ),
         ),
@@ -62,3 +59,5 @@ class AuthTextFieldWidget extends StatelessWidget {
     );
   }
 }
+
+
