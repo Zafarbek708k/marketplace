@@ -43,7 +43,6 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    ColorScheme contextColor = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: Colors.white,
       body: _mainWrapperBody(),
@@ -51,50 +50,56 @@ class _MainWrapperState extends State<MainWrapper> {
     );
   }
 
-  BottomAppBar _mainWrapperBottomNavBar(BuildContext context) {
-    return BottomAppBar(
-      color: const Color(0xff101010),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _bottomAppBarItem(
-                  context,
-                  defaultIcon: Assets.iconsHome,
-                  page: 0,
-                  filledIcon: Assets.iconsHomeFilled,
+  Widget _mainWrapperBottomNavBar(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(350),
+        child: BottomAppBar(
+          color: const Color(0xff101010),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _bottomAppBarItem(
+                      context,
+                      defaultIcon: Assets.iconsHome,
+                      page: 0,
+                      filledIcon: Assets.iconsHomeFilled,
+                    ),
+                    _bottomAppBarItem(
+                      context,
+                      defaultIcon: Assets.iconsCartFilled,
+                      page: 1,
+                      filledIcon: Assets.iconsCart,
+                    ),
+                    _bottomAppBarItem(
+                      context,
+                      defaultIcon: Assets.iconsFav,
+                      page: 2,
+                      filledIcon: Assets.iconsHeartFilled,
+                    ),
+                    _bottomAppBarItem(
+                      context,
+                      defaultIcon: Assets.iconsMessage,
+                      page: 3,
+                      filledIcon: Assets.iconsMessageBulk,
+                    ),
+                    _bottomAppBarItem(
+                      context,
+                      defaultIcon: Assets.iconsProfileCircle,
+                      page: 4,
+                      filledIcon: Assets.iconsProfileFilled,
+                    )
+                  ],
                 ),
-                _bottomAppBarItem(
-                  context,
-                  defaultIcon: Assets.iconsCartFilled,
-                  page: 1,
-                  filledIcon: Assets.iconsCart,
-                ),
-                _bottomAppBarItem(
-                  context,
-                  defaultIcon: Assets.iconsFav,
-                  page: 2,
-                  filledIcon: Assets.iconsHeartFilled,
-                ),
-                _bottomAppBarItem(
-                  context,
-                  defaultIcon: Assets.iconsMessage,
-                  page: 3,
-                  filledIcon: Assets.iconsMessageBulk,
-                ),
-                _bottomAppBarItem(
-                  context,
-                  defaultIcon: Assets.iconsProfileCircle,
-                  page: 4,
-                  filledIcon: Assets.iconsProfileFilled,
-                )
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -121,11 +126,11 @@ class _MainWrapperState extends State<MainWrapper> {
             curve: Curves.fastLinearToSlowEaseIn);
       },
       child: Container(
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         decoration: BoxDecoration(
           color: context.watch<BottomNavCubit>().state == page ? Colors.white : Colors.transparent,
-          borderRadius: BorderRadius.circular(25)
+          borderRadius: BorderRadius.circular(30)
         ),
         child: Center(
           child: SvgPicture.asset(
