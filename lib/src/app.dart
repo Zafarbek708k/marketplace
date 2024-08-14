@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marketplace/src/features/auth/pages/sign_in.dart';
 import 'package:marketplace/src/features/main/bloc/bottom_nav.dart';
 
 import 'features/main/main_wrapper.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
           child: const MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Marketplace',
-              home: MainWrapper()
+              // home: MainWrapper()
+            home: SignIn(),
           ),
         );
       },
