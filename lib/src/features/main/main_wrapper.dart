@@ -5,7 +5,7 @@ import 'package:marketplace/generated/assets.dart';
 import 'package:marketplace/src/common/styles/app_colors.dart';
 import 'package:marketplace/src/features/cart/cart_page.dart';
 import 'package:marketplace/src/features/chat/chat_page.dart';
-import 'package:marketplace/src/features/home/home_page.dart';
+import 'package:marketplace/src/features/home/presentation/pages/home_page.dart';
 import 'package:marketplace/src/features/profile/profile_page.dart';
 import 'package:marketplace/src/features/wishlist/wishlist_page.dart';
 
