@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marketplace/generated/assets.dart';
 import 'package:marketplace/src/common/styles/app_colors.dart';
-import 'package:marketplace/src/features/cart/cart_page.dart';
-import 'package:marketplace/src/features/chat/chat_page.dart';
+import 'package:marketplace/src/features/cart/pages/cart_page.dart';
+import 'package:marketplace/src/features/chat/pages/chat_page.dart';
 import 'package:marketplace/src/features/home/presentation/pages/home_page.dart';
-import 'package:marketplace/src/features/profile/profile_page.dart';
-import 'package:marketplace/src/features/wishlist/wishlist_page.dart';
+import 'package:marketplace/src/features/profile/pages/profile_page.dart';
+import 'package:marketplace/src/features/wishlist/pages/wishlist_page.dart';
 
-import 'bloc/bottom_nav.dart';
+import '../bloc/bottom_nav.dart';
 
 class MainWrapper extends StatefulWidget {
   const MainWrapper({super.key});
@@ -34,7 +35,7 @@ class _MainWrapperState extends State<MainWrapper> {
   }
 
   /// Top Level Pages
-  final List<Widget> topLevelPages = const [HomePage(), CartPage(), WishlistPage(), ChatPage(), ProfilePage()];
+  final List<Widget> topLevelPages =   [HomePage(), const CartPage(), const WishlistPage(), const ChatPage(), const ProfilePage()];
 
   /// on Page Changed
   void onPageChanged(int page) {
@@ -43,16 +44,26 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: _mainWrapperBody(),
-      bottomNavigationBar: _mainWrapperBottomNavBar(context),
+      // bottomNavigationBar: _mainWrapperBottomNavBar(context),
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            left: 30.w,
+            right: 0,
+            child: _mainWrapperBottomNavBar(context),)
+        ],
+      ),
     );
   }
 
   Widget _mainWrapperBottomNavBar(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin:  REdgeInsets.symmetric( vertical: 10),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(350),
         child: BottomAppBar(

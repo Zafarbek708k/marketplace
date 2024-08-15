@@ -1,10 +1,12 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marketplace/src/features/auth/pages/sign_in.dart';
 import 'package:marketplace/src/features/main/bloc/bottom_nav.dart';
 
-import 'features/main/main_wrapper.dart';
+import 'features/main/pages/main_wrapper.dart';
 
 class MyApp extends StatelessWidget {
   // final _splashVisitedNotifier = ValueNotifier(false);
@@ -26,14 +28,19 @@ class MyApp extends StatelessWidget {
       designSize: const Size(430, 932),
       minTextAdapt: true,
       builder: (context, child) {
-        return BlocProvider(
-          create: (context) => BottomNavCubit(),
-          child: const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Marketplace',
-              // home: MainWrapper()
-            home: SignIn(),
-          ),
+        return DevicePreview(
+          enabled: kDebugMode && true,
+          builder: (BuildContext context) {
+            return   BlocProvider(
+              create: (context) => BottomNavCubit(),
+              child: const MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Marketplace',
+                // home: MainWrapper()
+                home: SignIn(),
+              ),
+            );
+          },
         );
       },
     );

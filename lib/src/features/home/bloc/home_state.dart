@@ -1,9 +1,20 @@
 part of 'home_bloc.dart';
+@immutable
+class HomeState extends Equatable {
+  final String selectedValue;
 
-class HomeState {}
+  const HomeState({this.selectedValue = ''});
 
-class DropdownValueSelected extends HomeState {
-  DropdownValueSelected(String selectedValue);
+  HomeState copyWith({
+    String? selectedValue,
+  }) {
+    return HomeState(
+      selectedValue: selectedValue ?? this.selectedValue,
+    );
+  }
+
+  @override
+  List<Object?> get props => [selectedValue];
 }
 
-class HomeInitial extends HomeState {}
+
