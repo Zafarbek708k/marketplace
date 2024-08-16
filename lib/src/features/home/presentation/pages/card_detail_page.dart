@@ -1,11 +1,17 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marketplace/src/features/auth/widgets/auth_common_button_widget.dart';
 import 'package:marketplace/src/features/home/data/entity/product_model.dart';
+
+import '../../data/repository/home_repository.dart';
 
 class CardDetailPage extends StatelessWidget {
   const CardDetailPage({super.key, required this.productModel});
-  final ProductModel productModel;
 
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +22,17 @@ class CardDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 50.h),
               // Top Action Bar
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {},
-                    ),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    shape: const CircleBorder(side: BorderSide(color: Colors.black)),
+                    child: const Icon(Icons.arrow_back),
                   ),
                   const Text(
                     "Product Detail",
@@ -39,18 +47,36 @@ class CardDetailPage extends StatelessWidget {
               ),
 
               // Image Carousel
-          Image.network("https://i.pinimg.com/564x/b3/74/21/b374218190f8c91d0dac55ad643d046c.jpg"),
 
+              Center(
+                child: CachedNetworkImage(
+                  imageUrl: productModel.image!,
+                  width: double.infinity,
+                  height: 250.h,
+                  fit: BoxFit.contain,
+                  placeholder: (context, url) =>
+                      Container(
+                        width: double.infinity,
+                        height: 150.h,
+                        color: Colors.grey[300],
+                        child: const Center(child: CircularProgressIndicator()),
+                      ),
+                  errorWidget: (context, url, error) =>
+                      Container(
+                        width: double.infinity,
+                        height: 170.h,
+                        color: Colors.grey[300],
+                        child: Center(child: Icon(Icons.error, color: Colors.red[400])),
+                      ),
+                ),
+              ),
 
               const SizedBox(height: 10),
               // Rating
-              Row(
-                children: [
-                  Text("${productModel.rating!.count} ★", style: const TextStyle(fontSize: 16)),
-                  const SizedBox(width: 10),
-                  Text(productModel.title.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                ],
-              ),
+
+              Text("Product Rating ${productModel.rating!.count} ★", style: const TextStyle(fontSize: 16)),
+              const SizedBox(width: 10),
+              Text("Product title: ${productModel.title}", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
               const SizedBox(height: 5),
               // Product Description
@@ -88,18 +114,29 @@ class CardDetailPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 20),
-              // Total Price
-              Text("Total Price: \$${productModel.price}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
-              // Add to Cart Button
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
 
-                ),
-                child: const Text("Add to Cart"),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text("Total Price\n \$${productModel.price}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: AuthCommonButton(
+                        onPressed: () async {
+                          await HomeRepository.postData(product: productModel).then((response) {
+                            log("card detail add to card button is working");
+                          }).catchError(
+                                (error) {},
+                          );
+                        },
+                        text: "Add to Cart"),
+                  )
+                ],
               ),
+
+              SizedBox(height: 60.h)
             ],
           ),
         ),
@@ -124,6 +161,3 @@ class CardDetailPage extends StatelessWidget {
     );
   }
 }
-
-
-

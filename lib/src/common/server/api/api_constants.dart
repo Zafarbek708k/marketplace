@@ -6,9 +6,12 @@ final class ApiConst {
   static const Duration receiveTimeout = Duration(minutes: 1);
 
   static const String baseUrl = "https://fakestoreapi.com";
+  static const String baseUrlPost = "https://65c717aae7c384aada6e2dae.mockapi.io";
 
   static const String apiProduct = "/products";
   static const String apiCarts = "/carts";
+  static const String apiBasket = "/backet";
+
 
 }
 

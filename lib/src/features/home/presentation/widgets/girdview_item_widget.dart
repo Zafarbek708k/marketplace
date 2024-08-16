@@ -14,7 +14,7 @@ class GridViewCardItem extends StatelessWidget {
     return CupertinoButton(
       onPressed: onPressed,
       child: Container(
-        width: 290.w,
+        width: 300.w,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15.r),
@@ -59,7 +59,7 @@ class GridViewCardItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
+                     Expanded(
                       child: Text(
                       product.title ??"null title",
                         style: const TextStyle(
@@ -68,12 +68,14 @@ class GridViewCardItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      product.description ?? "null desc",
-                      style: TextStyle(color: Colors.black),
+                    Expanded(
+                      child: Text(
+                        product.description ?? "no description",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                     Text(
-                      "${product.price}    • ⭐ ${product.rating}",
+                      "${product.price} \$      •    ⭐ ${product.rating!.rate}",
                       style:const TextStyle(color: Colors.black),
                     ),
                   ],

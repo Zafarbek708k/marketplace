@@ -1,14 +1,12 @@
 import "dart:async";
 import "dart:convert";
 import "dart:io";
-
 import "package:connectivity_plus/connectivity_plus.dart";
 import "package:dio/dio.dart";
 import "package:dio/io.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/services.dart";
 import "package:l/l.dart";
-
 import "../../storage/app_storage.dart";
 import "../interceptors/connectivity_interceptor.dart";
 import "api_connection.dart";
@@ -18,10 +16,10 @@ import "api_constants.dart";
 class ApiService {
   const ApiService._();
 
-  static Future<Dio> initDio() async {
+  static Future<Dio> initDio({required String baseUrl}) async {
     final dio = Dio(
       BaseOptions(
-        baseUrl: ApiConst.baseUrl,
+        baseUrl: baseUrl,
         headers: await ApiService.getHeaders(),
         connectTimeout: ApiConst.connectionTimeout,
         receiveTimeout: ApiConst.sendTimeout,
@@ -64,9 +62,9 @@ class ApiService {
     return headers;
   }
 
-  static Future<String?> get(String api, Map<String, dynamic> params) async {
+  static Future<String?> get({required String api, required String baseUrl, required Map<String, dynamic> params}) async {
     try {
-      final response = await (await initDio()).get<dynamic>(api, queryParameters: params);
+      final response = await (await initDio(baseUrl: baseUrl)).get<dynamic>(api, queryParameters: params);
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
@@ -81,12 +79,12 @@ class ApiService {
   }
 
   static Future<String?> post(
-    String api,
-    Map<String, dynamic> data, [
-    Map<String, dynamic> params = const <String, dynamic>{},
-  ]) async {
+      {required String api,
+      required String baseUrl,
+      required Map<String, dynamic> data,
+      Map<String, dynamic> params = const <String, dynamic>{}}) async {
     try {
-      final response = await (await initDio()).post<dynamic>(api, data: data, queryParameters: params);
+      final response = await (await initDio(baseUrl: baseUrl)).post<dynamic>(api, data: data, queryParameters: params);
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
@@ -142,9 +140,9 @@ class ApiService {
     }
   }
 
-  static Future<String?> put(String api, Map<String, dynamic> data) async {
+  static Future<String?> put({required String api, required String baseUrl, required Map<String, dynamic> data}) async {
     try {
-      final response = await (await initDio()).put<dynamic>(api, data: data);
+      final response = await (await initDio(baseUrl: baseUrl)).put<dynamic>(api, data: data);
 
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
@@ -158,12 +156,9 @@ class ApiService {
     }
   }
 
-  static Future<String?> putAccount(
-    String api,
-    Map<String, dynamic> params,
-  ) async {
+  static Future<String?> putAccount({required String api,required String baseUrl,  required Map<String, dynamic> params}) async {
     try {
-      final response = await (await initDio()).put<dynamic>(api, queryParameters: params);
+      final response = await (await initDio(baseUrl: baseUrl)).put<dynamic>(api, queryParameters: params);
 
       return jsonEncode(response.data);
     } on TimeoutException catch (_) {
@@ -177,9 +172,9 @@ class ApiService {
     }
   }
 
-  static Future<String?> delete(String api, Map<String, dynamic> params) async {
+  static Future<String?> delete({required String api, required String id,required String baseUrl, required Map<String, dynamic> params}) async {
     try {
-      final _ = await (await initDio()).delete<dynamic>(api, queryParameters: params);
+      final _ = await (await initDio(baseUrl: baseUrl)).delete<dynamic>("$api/$id", queryParameters: params);
       return "success";
     } on TimeoutException catch (_) {
       l.e("The connection has timed out, Please try again!");
