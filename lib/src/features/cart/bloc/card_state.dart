@@ -1,5 +1,5 @@
 part of 'card_bloc.dart';
-enum CardPageState { init, loading, success, error }
+enum CardPageState { init, loading, success, error}
 
 @immutable
 class CardState extends Equatable {

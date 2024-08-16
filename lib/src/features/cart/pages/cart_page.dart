@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marketplace/src/features/cart/bloc/card_bloc.dart';
-
 import '../widgets/checkout_bottom_sheet_widget.dart';
 import '../widgets/remove_bottom_sheet_widget.dart';
+
+
+
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -20,24 +22,13 @@ class CartPage extends StatelessWidget {
           if (state.cardPageState == CardPageState.loading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state.cardPageState == CardPageState.error) {
-            return const Center(child: Text('Failed to load items'));
+            return const Center(child: Text('No Data '));
           } else if (state.cardPageState == CardPageState.success) {
             return Scaffold(
               body: Column(
                 children: [
                   SizedBox(height: 50.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MaterialButton(
-                        onPressed: () {},
-                        shape: const CircleBorder(side: BorderSide(color: Colors.black)),
-                        child: const Icon(Icons.arrow_back),
-                      ),
-                      Text("My Carts", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.sp)),
-                      SizedBox(width: 100.w),
-                    ],
-                  ),
+                  Center(child: Text("My Carts", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.sp))),
                   Expanded(
                     child: ListView.builder(
                       itemCount: state.basketList.length,

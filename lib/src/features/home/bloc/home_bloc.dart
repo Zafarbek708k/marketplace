@@ -26,6 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     "women's clothing"
   ];
 
+
   HomeBloc() : super(const HomeState( homePageState: HomePageState.init, productList: [])) {
     on<LocationSelecting>((event, emit) {
       emit(state.copyWith(selectedValue: event.selectedValue));

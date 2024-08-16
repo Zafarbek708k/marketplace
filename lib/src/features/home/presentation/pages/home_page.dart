@@ -9,6 +9,7 @@ import 'package:marketplace/src/features/home/presentation/pages/card_detail_pag
 import 'package:marketplace/src/features/home/presentation/widgets/girdview_item_widget.dart';
 import 'package:marketplace/src/features/home/presentation/widgets/home_banner_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../data/entity/category_model.dart';
 import '../widgets/home_search_widget.dart';
 import '../widgets/home_top_location_widget.dart';
 
@@ -112,16 +113,22 @@ class HomePage extends StatelessWidget {
                     height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 9,
+                      itemCount:  categoryList.length,
                       itemBuilder: (context, index) {
+                        var item =  categoryList[index];
                         return Column(
                           children: [
                             MaterialButton(
                               shape: const CircleBorder(side: BorderSide(color: Colors.black)),
                               onPressed: () {},
-                              child: const Icon(Icons.man),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                    height: 50.h,
+                                    child: Image.asset(item.image!)),
+                              ),
                             ),
-                            Text("${index + 1} - image")
+                            Text("${item.title}", style: const TextStyle(fontWeight: FontWeight.bold),)
                           ],
                         );
                       },

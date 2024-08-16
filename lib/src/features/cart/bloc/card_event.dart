@@ -16,7 +16,8 @@ class GetBasketProductList extends CardEvent {
 
 class DeleteBasketItem extends CardEvent {
   final List<ProductPostModel> list;
-  const DeleteBasketItem({required this.list});
+  final String id;
+  const DeleteBasketItem({required this.list, required this.id});
 
   @override
   List<Object?> get props => [list];

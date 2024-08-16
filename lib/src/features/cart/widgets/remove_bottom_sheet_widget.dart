@@ -69,7 +69,7 @@ class RemoveBottomSheet extends StatelessWidget {
                           ),
                           onPressed: () {
 
-                            context.read<CardBloc>().add(DeleteBasketItem(list: [item]));
+                            context.read<CardBloc>().add(DeleteBasketItem(list: [item], id: item.id!));
                             context.read<CardBloc>().add(const GetBasketProductList(list: []));
 
                             Navigator.pop(context);

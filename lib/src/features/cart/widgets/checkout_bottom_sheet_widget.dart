@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marketplace/src/features/payment/pages/check_out_page.dart';
 
 class CheckOutBottomSheet extends StatelessWidget {
   const CheckOutBottomSheet({super.key});
@@ -59,8 +60,8 @@ class CheckOutBottomSheet extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // Proceed to checkout logic
                     Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const CheckOutPage()));
                   },
                   child: Text("Proceed to Checkout", style: TextStyle(fontSize: 18.sp, color: Colors.white)),
                 ),
