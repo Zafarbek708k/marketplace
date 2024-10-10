@@ -39,6 +39,13 @@ dependencies:
   #for locale storage
   flutter_secure_storage: ^9.0.0
 
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

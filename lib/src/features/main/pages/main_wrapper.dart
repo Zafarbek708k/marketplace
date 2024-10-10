@@ -35,7 +35,7 @@ class _MainWrapperState extends State<MainWrapper> {
   }
 
   /// Top Level Pages
-  final List<Widget> topLevelPages =   [HomePage(), const CartPage(), const WishlistPage(), const ChatPage(), const ProfilePage()];
+  final List<Widget> topLevelPages =   [const HomePage(), const CartPage(), const WishlistPage(), const ChatPage(), const ProfilePage()];
 
   /// on Page Changed
   void onPageChanged(int page) {

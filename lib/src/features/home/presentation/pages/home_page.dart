@@ -175,7 +175,7 @@ class HomePage extends StatelessWidget {
                         crossAxisCount: 2, // Number of items in a row
                         crossAxisSpacing: 1, // Spacing between the items horizontally
                         mainAxisSpacing: 1.0, // Spacing between the items vertically
-                        childAspectRatio: 0.5, // Aspect ratio of each item
+                        childAspectRatio: 0.7, // Aspect ratio of each item
                       ),
                       itemCount: faceProducts.length, // Replace with the actual number of items
                       itemBuilder: (context, index) {

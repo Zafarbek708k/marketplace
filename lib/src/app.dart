@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) {
         return DevicePreview(
-          enabled: kDebugMode && true,
+          enabled: kDebugMode && false,
           builder: (BuildContext context) {
             return   BlocProvider(
               create: (context) => BottomNavCubit(),
