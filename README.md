@@ -12,7 +12,7 @@ A few resources to get you started if this is your first Flutter project:
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 
-# Movie App
+# Marketplace
 
 **Marketplace** is a highly performant and feature-rich mobile application built using **Flutter** and **Dart**. 
 This app provides a seamless user experience for browsing, discovering, and saving things with advanced capabilities like localization, theme switching, state management, and secure 
@@ -78,8 +78,8 @@ To install and run the Movie App on your local machine, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Zafarbek708k/movie_app.git
-   cd movie_app
+   git clone https://github.com/Zafarbek708k/marketplace
+   cd marketplace
    ```
 
 2. Install dependencies:
